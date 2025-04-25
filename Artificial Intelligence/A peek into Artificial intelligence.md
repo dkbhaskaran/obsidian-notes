@@ -7,20 +7,50 @@ This entry is mostly from the perspective of learning the basic concepts involve
 Artificial intelligence as the name suggests is defined by ability of machines to perform activities like logical reasoning, problem-solving, decision making. This is pretty wide term encompassing machine learning, deep leaning and natural language processing etc.
 
 A hierarchical representation of the terminologies that are important to our discussion is as below
- 1. Artificial intelligence : Defined above
-	 1. Machine leaning : A branch of artificial intelligence, which is concerned with teaching computers from a set of data.
-		 1. Neural networks : A neural network consists of layers of neurons that mimics the human neurons put together to process and analyze data.
-			 1. Deep Neural networks : These are subset of neural network consisting of multiple many layers of neuron accomplishing a sophisticated task. Some examples of deep learning models include CNN, RNN, GAN etc.
-				 1. Generative AI : Generative AI uses DNN as building blocks to create or generate image (Midjourney) , text (ChatGPT) etc. 
-					 1. LLM (Large language models): A type of generative AI specifically designed for text data like GPT (Generated Pre-trained) developed by OpenAI.
+
+Artificial Intelligence (AI)
+│
+├── Symbolic AI / GOFAI – Rule-based systems using logic and symbols
+│   ├── Expert Systems – Emulate decisions of human experts
+│   ├── Rule-Based Systems – Use "if-then" rules for decision making
+│   └── Knowledge Representation & Reasoning – Represent facts and infer new ones
+│
+├── Machine Learning (ML) – Learning patterns from data
+│   ├── Supervised Learning – Learn from labeled data
+│   │   ├── Decision Trees – Tree-like decision paths
+│   │   ├── SVM – Classify data using optimal boundaries
+│   │   └── Neural Networks – Brain-inspired layered models
+│   │       └── Deep Neural Networks (DNN) – Multi-layered neural networks
+│   │           ├── CNN – Image and spatial data processing
+│   │           ├── RNN – Sequence and time-series processing
+│   │           └── Transformers – Self-attention based models
+│   │               └── Generative AI – Create new content (text, image, etc.)
+│   │                   └── LLMs – Large language models trained on text (e.g. ChatGPT)
+│   │
+│   ├── Unsupervised Learning – Find hidden structure in data
+│   │   ├── Clustering – Group similar data points (e.g., K-means)
+│   │   └── Dimensionality Reduction – Compress features while keeping structure (e.g., PCA)
+│   │
+│   └── Reinforcement Learning – Learn by trial and error
+│       ├── Q-Learning – Value-based decision learning
+│       └── DQN – Combines deep learning with Q-learning
+│
+└── Other Subfields of AI
+    ├── NLP – Understand and generate human language
+    ├── Computer Vision – Interpret visual input like images/videos
+    ├── Robotics – Perceive and act in the physical world
+    └── Planning & Scheduling – Determine action sequences to achieve goals
+
 
 It should be understood that the AI is not just ChatGPT or vice versa. Although most popular ChatGPT is just a  subset of large space covered by AI.
 
-LLMs have become by far the most popular applications on internet today as their numerous applications are being invented/discovered daily. The whole technology space is evolving rapidly by the application of LLMs. To build an good understanding of how LLMs work, one should start from understanding DNNs at the very least.
+LLMs have become by far the most popular applications on internet today as their numerous applications are being invented/discovered daily. The whole world is evolving rapidly by the application of LLMs. To build an good understanding of how LLMs work, one should start from understanding DNNs at the very least.
 
-Deep neural networks
+Deep neural networks (DNN)
 ---
 
-## Neuron
+Basic building blocks of a DNN is a neuron. These are 
+
+
 
 
