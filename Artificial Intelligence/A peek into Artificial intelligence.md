@@ -1,4 +1,3 @@
-
 Introduction
 --
 
@@ -42,9 +41,7 @@ Artificial Intelligence (AI)
     └── Planning & Scheduling – Determine action sequences to achieve goals
 
 
-It should be understood that the AI is not just ChatGPT or vice versa. Although most popular ChatGPT is just a  subset of large space covered by AI.
-
-LLMs have become by far the most popular applications on internet today as their numerous applications are being invented/discovered daily. The whole world is evolving rapidly by the application of LLMs. To build an good understanding of how LLMs work, one should start from understanding DNNs at the very least.
+It should be understood that the AI is not just ChatGPT or vice versa.  LLMs have become by far the most popular applications on internet today as their numerous applications are being invented/discovered daily. The whole world is evolving rapidly by the application of LLMs. To build an good understanding of how LLMs work, one should start from understanding DNNs at the very least.
 
 Deep neural networks (DNN)
 ---

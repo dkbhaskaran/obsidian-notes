@@ -1,3 +1,8 @@
 {
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "cssTheme": "Obsidianite",
+  "interfaceFontFamily": "Microsoft Sans Serif",
+  "textFontFamily": "Microsoft Sans Serif",
+  "baseFontSize": 20,
+  "baseFontSizeAction": true
 }

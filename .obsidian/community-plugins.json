@@ -1,4 +1,8 @@
 [
   "obsidian-git",
-  "obsidian-vimrc-support"
+  "obsidian-vimrc-support",
+  "calendar",
+  "code-styler",
+  "file-explorer-plus",
+  "omnisearch"
 ]
