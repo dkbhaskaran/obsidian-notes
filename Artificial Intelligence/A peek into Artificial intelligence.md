@@ -46,8 +46,9 @@ It should be understood that the AI is not just ChatGPT or vice versa.  LLMs hav
 Deep neural networks (DNN)
 ---
 
-Basic building blocks of a DNN is a neuron. These are 
+To understand the working of a LLM like ChatGPT it is helpful to understand the basics of DNNs and how they work. There will be few notable details or terms that we will cover here, which will be used again in the discussion of LLMs. A basic building block for a DNN is a mathematical model called perceptron. These were introduced as part of a 1958 paper "[The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain]( https://www.ling.upenn.edu/courses/cogs501/Rosenblatt1958.pdf)" by Frank Rosenblatt pioneering the field of AI.
 
+In this paper F. Rosenblatt discusses a mathematical model called perceptron, analogous to human neuron, that can process information, learn and adapt (based on feedback). This is similar to a function that takes in several independent inputs and produces an output. The output is calculated based on the weighted sum of the inputs passed through a activation function. Much like the diagram below
 
-
+![[Pasted image 20250506103038.png]]
 
