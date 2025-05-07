@@ -76,10 +76,10 @@ Well just one perceptron is not particularly useful, hence we build a network of
 
 ![[MLP.drawio.png]]
 
-Thus 
+Thus, we have
+
 ```
 Yᵢ = f(XᵀWᵢ)
-Zᵢ = Yᵢ
 ```
 
 We have conveniently dropped the bias term to be included as weight. 
