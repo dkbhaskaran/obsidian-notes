@@ -74,7 +74,12 @@ Multi Output perceptron
 ---
 Well just one perceptron is not particularly useful, hence we build a network of perceptrons that can take a set of inputs and provide multiple outputs. This works on similar principles as the perceptron, except in here we define a set of weights that are used for generating one output and similarly another set of weights for next output.
 
-These below diagram extends the multi output perceptron to use a hidden layer of output which then again is used to generate a final output. The mathematical equation 
+![[MLP.drawio.png]]
 
-![[Pasted image 20250506181723.png]]
+Thus 
+```
+Yᵢ = f(XᵀWᵢ)
+Zᵢ = Yᵢ
+```
 
+We have conveniently dropped the bias term to be included as weight. 
