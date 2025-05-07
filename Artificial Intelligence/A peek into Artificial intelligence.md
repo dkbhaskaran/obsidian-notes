@@ -48,7 +48,20 @@ Deep neural networks (DNN)
 
 To understand the working of a LLM like ChatGPT it is helpful to understand the basics of DNNs and how they work. There will be few notable details or terms that we will cover here, which will be used again in the discussion of LLMs. A basic building block for a DNN is a mathematical model called perceptron. These were introduced as part of a 1958 paper "[The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain]( https://www.ling.upenn.edu/courses/cogs501/Rosenblatt1958.pdf)" by Frank Rosenblatt pioneering the field of AI.
 
-In this paper F. Rosenblatt discusses a mathematical model called perceptron, analogous to human neuron, that can process information, learn and adapt (based on feedback). This is similar to a function that takes in several independent inputs and produces an output. The output is calculated based on the weighted sum of the inputs passed through a activation function. Much like the diagram below
+In this paper F. Rosenblatt discusses a mathematical model called perceptron, analogous to human neuron, that can process information, learn and adapt (based on feedback). This is similar to a function that takes in several independent inputs and produces an output. The output is calculated based on the weighted sum of the inputs passed through a activation function like the diagram below
 
 ![[Pasted image 20250506103038.png]]
 
+Thus we have
+
+```
+Z = W1*X1 + W2*X2 + W3*X3 ....  Wn*Xn + b ................ eq. 1
+Y = f(Z)                           ....................... eq. 2
+```
+
+Here W1, W2...Wn are the weights, b is a bias term which can be assimilated as X0 to the equation with W0 = 1. The bias term ensures that there is discrete value for the weighted sum even if all the inputs are zero. The purpose of the activation function is to introduce non-linearity to the output of the perceptron as otherwise we could only have linear modelling and in real world most of the problems are non linear. some of the popular activation functions are sigmoid, ReLU or tanh.
+
+Lets rewrite the equation using linear algebra as 
+```markdown
+Y = f(W<sub>0</sub> + X<sup>T</sup>W)
+```
