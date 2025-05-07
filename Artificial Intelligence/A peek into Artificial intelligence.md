@@ -59,9 +59,22 @@ Z = W1*X1 + W2*X2 + W3*X3 ....  Wn*Xn + b ................ eq. 1
 Y = f(Z)                           ....................... eq. 2
 ```
 
-Here W1, W2...Wn are the weights, b is a bias term which can be assimilated as X0 to the equation with W0 = 1. The bias term ensures that there is discrete value for the weighted sum even if all the inputs are zero. The purpose of the activation function is to introduce non-linearity to the output of the perceptron as otherwise we could only have linear modelling and in real world most of the problems are non linear. some of the popular activation functions are sigmoid, ReLU or tanh.
+Here W1, W2...Wn are the weights, b is a bias term which can be assimilated as X0 to the equation with W0 = 1. The bias term ensures that there is discrete value for the weighted sum even if all the inputs are zero. The purpose of the activation function is to introduce non-linearity to the output of the perceptron as otherwise we could only have linear modelling and in real world most of the data is non linear. some of the popular activation functions are sigmoid, ReLU or tanh.
+
+To further illustrate the significance of activation function, let us consider a perceptron that has weights [3, -2] and bias = 1. Thus without the activation function the output value Z = 1 + 3X1 - 2X2 where X1 and X2 are the input values. This divides the 2D space into two regions when Z < 0 or Z > 0 essentially a binary classification around the line. Hence the problem.
 
 Lets rewrite the equation using linear algebra as 
 ```markdown
-Y = f(W<sub>0</sub> + X<sup>T</sup>W)
+Y = f(W₀ + XᵀW)
 ```
+
+This is particularly important when we  illustrate this with some code.
+
+Multi Output perceptron
+---
+Well just one perceptron is not particularly useful, hence we build a network of perceptrons that can take a set of inputs and provide multiple outputs. This works on similar principles as the perceptron, except in here we define a set of weights that are used for generating one output and similarly another set of weights for next output.
+
+These below diagram extends the multi output perceptron to use a hidden layer of output which then again is used to generate a final output. The mathematical equation 
+
+![[Pasted image 20250506181723.png]]
+

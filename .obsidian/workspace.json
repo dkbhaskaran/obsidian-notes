@@ -197,6 +197,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-markdown-formatting-assistant-plugin:Open Markdown Formatting Assistant": false,
       "obsidian-git:Open Git source control": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
@@ -209,6 +210,7 @@
   },
   "active": "4add06563a956af5",
   "lastOpenFiles": [
+    "Pasted image 20250506181723.png",
     "Pasted image 20250506103038.png",
     "Pasted image 20250506102824.png",
     "Artificial Intelligence/A peek into Artificial intelligence.md",
