@@ -144,5 +144,3 @@ x = torch.tensor([1.0, 2.0])
 y = model(x)
 print("Output with torch.nn is ", y)
 ```
-
-
