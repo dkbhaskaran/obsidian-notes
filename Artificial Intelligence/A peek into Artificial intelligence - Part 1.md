@@ -74,7 +74,7 @@ Multi Output perceptron
 ---
 Well just one perceptron is not particularly useful, hence we build a network of perceptrons that can take a set of inputs and provide multiple outputs. This works on similar principles as the single perceptron, except in here we define a set of weights that are used for generating one output and similarly another set of weights for next output. The diagram below shows two output scenario. Note there could be multiple layers in between the input and output layer which are sometime called hidden layers. 
 
-![[MLP.drawio.png]]
+![[Image-2.png]]
 
 Thus, after dropping the bias term, we have
 
@@ -82,7 +82,7 @@ Thus, after dropping the bias term, we have
 Yᵢ = f(XᵀWᵢ)  ....................... eq. 3
 ```
 
-Where Wᵢ is the weights corresponding to output Yᵢ. The following program shows an implementation of multi layer perceptron using PyTorch.
+Where Wᵢ is the weights corresponding to output Yᵢ. The following program shows an implementation of multi layer perceptron using PyTorch. The code is explained through the comments.
 
 ```python
 mport torch
