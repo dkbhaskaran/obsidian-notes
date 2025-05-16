@@ -4,17 +4,41 @@
     "type": "split",
     "children": [
       {
-        "id": "cc38c81ce963aa41",
+        "id": "62235eaba17293c7",
         "type": "tabs",
         "children": [
           {
-            "id": "1376e5797aba87c9",
+            "id": "6b478a589be8c1a1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "General/Electrifying your terminal with AI.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Electrifying your terminal with AI"
+            }
+          }
+        ]
+      },
+      {
+        "id": "c0abf2456c8a5828",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9337390c3db36b73",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General/Electrifying your terminal with AI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Electrifying your terminal with AI"
             }
           }
         ]
@@ -91,6 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "General/Electrifying your terminal with AI.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +125,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Electrifying your terminal with AI"
             }
           },
           {
@@ -182,8 +207,10 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "1376e5797aba87c9",
+  "active": "9337390c3db36b73",
   "lastOpenFiles": [
+    "General/Electrifying your terminal with AI.md",
+    "General",
     "Artificial Intelligence/A peek into Artificial intelligence - Part 1.md",
     "Artificial Intelligence/Images/Image-2.png",
     "Artificial Intelligence/Images/Image-1.png",
@@ -196,7 +223,6 @@
     "README.md",
     "MLP.drawio.png",
     "MLP.jpg",
-    "Untitled",
     "__MACOSX",
     "obsidian.zip",
     "Untitled.canvas",
