@@ -59,15 +59,78 @@ This is the json partial output from the model. Note the HELLO WORLD! message on
 
 ## Shell
 
-The 
+The following code in python uses request module to emulate a chat bot for the terminal. A more enhanced version can be found in my [dotfiles](https://github.com/dkbhaskaran/dotfiles)
+
+```python
+import requests
+import json
+
+def stream_ollama_response(prompt, model="mistral"):
+    print(f"Assistant: ", end="", flush=True)
+
+    try:
+        with requests.post(
+            "http://localhost:11434/api/generate",
+            json={"model": model, "prompt": prompt,
+                  "stream": True},
+            stream=True,
+        ) as response:
+            for line in response.iter_lines(decode_unicode=True):
+                if not line:
+                    continue
+
+                try:
+                    data = json.loads(line)
+
+                    content = ""
+                    if "message" in data:
+                        content = data["message"].get("content",
+                                                      "")
+                    elif "response" in data:
+                        content = data.get("response", "")
+
+                    if content:
+                        print(f"{content}", end="", flush=True)
+
+                    if data.get("done", False):
+                        break
+
+                except json.JSONDecodeError:
+                    print(f"\n[Error decoding JSON line]")
+
+    except requests.RequestException as e:
+        print(f"\n[Request error] {e}")
+
+    print()
+    print(f"{'-'*65}")
+
+def chat_loop():
+    print(f"💬 Chat with Ollama ")
+    while True:
+        prompt = input(f"You: ")
+        if prompt.strip().lower() in {"exit", "quit"}:
+            break
+        stream_ollama_response(prompt)
+
+if __name__ == "__main__":
+    chat_loop()
+
+```
 
 
+It puts out a response like 
 
+```
+💬 Chat with Ollama 
+You: hello
+Assistant: Hello! How can I help you today? Let's make this conversation helpful and enjoyable. Is there a specific question or topic you'd like to explore or discuss? I'm here to assist with a variety of subjects, from technology and science to entertainment and lifestyle.
+-----------------------------------------------------------------
+You: 
+```
 
-The first thing that comes to mind is the AI assimilation in shell. Well one can ask what's the use of it -well these can translate requests described in English (or some other language ?)  to shell commands. For example if you need a command but forgot the package it is part of (often my case), you can ask the AI to install the command or write a script to monitor cpu usage.
+## tmux integration
 
-
-One of the ways to incorporate AI in shell is through [tmuxai](https://github.com/alvinunreal/tmuxai). This is gaining po
+The first thing that comes to mind is the AI assimilation in shell. Well one can ask what's the use of it -well these can translate requests described in English (or some other language ?)  to shell commands. For example if you need a command but forgot the package it is part of (often my case), you can ask the AI to install the command or write a script to monitor cpu usage. One of the ways to incorporate AI in shell is through [tmuxai](https://github.com/alvinunreal/tmuxai). 
 
 Lets start with tmuxai the configuration needed are follows
 1. Install tmuxai through below command. Once 
