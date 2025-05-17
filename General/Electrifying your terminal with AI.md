@@ -22,7 +22,7 @@ This costing model is not restricted to OpenAI, most of the AI service providers
 
 For an experimental setup, I am not ready to pay anything now, thus we are left with options of locally hosted models like LLaMa and build around it. However I would like to keep the option alive of using a paid option if they make sense in future without much changes. So this may put a small dent in the whole electrification process :)
 
-Lets try to setup LLaMa model for chatting. This is 
+Now to serve models locally we need an interface like [Ollama](https://github.com/ollama). There are couple of other options, but Ollama is most popular now and we are going to use that.
 
 
 
