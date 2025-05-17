@@ -1,4 +1,4 @@
- I use terminal/terminal adjacent extensively in my daily routine, whether it be do programming or to listen to music or to take notes like what I am doing now. It is a pretty standard setup with zsh+tmux+neovim on Ubuntu 24.04.2 LTS. The config files can be found in my github repo [dotfiles](https://github.com/dkbhaskaran/dotfiles). Today we are going to add AI assistance to similar terminal workflow
+ I use terminal/terminal adjacent extensively in my daily routine, whether it be do programming or to listen to music or to take notes like what I am doing now. It is a pretty standard setup with zsh+tmux+neovim on Ubuntu 24.04.2 LTS on a Dell G15 5315 with Nvidia GeForce RTX 4050 card. The config files can be found in my github repo [dotfiles](https://github.com/dkbhaskaran/dotfiles). Today we are going to add AI assistance to similar terminal workflow
 
 The first thing that comes to mind is "is there a chatgpt cli tool?". Well yes there are like
 1. OpenAI CLI :- The official CLI to interact with open AI models. 
@@ -22,12 +22,10 @@ This costing model is not restricted to OpenAI, most of the AI service providers
 
 For an experimental setup, I am not ready to pay anything now, thus we are left with options of locally hosted models like LLaMa and build around it. However I would like to keep the option alive of using a paid option if they make sense in future without much changes. So this may put a small dent in the whole electrification process :)
 
-Now to serve models locally we need an interface like [Ollama](https://github.com/ollama). There are couple of other options, but Ollama is most popular now and we are going to use that.
+There are two prominent options for Open Source local LLM API [Ollama](https://github.com/ollama) and [LocalAI](https://github.com/mudler/LocalAI). In [here](https://hyscaler.com/insights/ollama-vs-localai-open-source-local-llm-apis/#local-ai-the-open-source-open-ai-alternative) there is an detailed comparison of these two and based on the fact Ollama is currently most adopted and that it is easy to setup compared to LocalAI, we are going to use Ollama. Given that it needs GPU support works in our favour and well its non-support for OpenAI API supprot is not currently a deterrent to our current goal as we are going for free and open source solutions.
 
 
-
-
-
+## Ollama setup
 
 
 
