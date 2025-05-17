@@ -23,8 +23,6 @@ This costing model is not restricted to OpenAI, most of the AI service providers
 For an experimental setup, I am not ready to pay anything now, thus we are left with options of locally hosted models like LLaMa and build around it. However I would like to keep the option alive of using a paid option if they make sense in future without much changes. So this may put a small dent in the whole electrification process :)
 
 There are two prominent options for Open Source local LLM API [Ollama](https://github.com/ollama) and [LocalAI](https://github.com/mudler/LocalAI). In [here](https://hyscaler.com/insights/ollama-vs-localai-open-source-local-llm-apis/#local-ai-the-open-source-open-ai-alternative) there is an detailed comparison of these two and based on the fact Ollama is currently most adopted and that it is easy to setup compared to LocalAI, we are going to use Ollama. Given that it needs GPU support, works in our favour and well its non-support for OpenAI API supprot is not currently a deterrent to our current goal as we are going for free and open source solutions now. If you do not have a GPU support its better to use LocalAI.
-
-
 ## Ollama setup
 
 I am going to use a docker based setup with the following setup
@@ -57,7 +55,9 @@ curl http://localhost:11434/api/chat -d '{
 This is how it looks like on my setup
 ![[pic-1.png]]
 
+This is the json partial output from the model. Note the HELLO WORLD! message on the right of the text.
 
+## 
 
 
 
