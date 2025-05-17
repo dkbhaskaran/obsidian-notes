@@ -57,7 +57,10 @@ This is how it looks like on my setup
 
 This is the json partial output from the model. Note the HELLO WORLD! message on the right of the text.
 
-## 
+## Shell
+
+The 
+
 
 
 
