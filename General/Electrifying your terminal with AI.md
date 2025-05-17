@@ -1,6 +1,40 @@
- I use terminal/terminal adjacent extensively in my daily routine, whether it be do programming or to listen to music or to take notes like what I am doing now. It is a pretty standard setup with zsh+tmux+neovim on Ubuntu 24.04.2 LTS. The config files can be found in my github repo [dotfiles](https://github.com/dkbhaskaran/dotfiles). Today we are going to add AI assistance to my terminal workflow
+ I use terminal/terminal adjacent extensively in my daily routine, whether it be do programming or to listen to music or to take notes like what I am doing now. It is a pretty standard setup with zsh+tmux+neovim on Ubuntu 24.04.2 LTS. The config files can be found in my github repo [dotfiles](https://github.com/dkbhaskaran/dotfiles). Today we are going to add AI assistance to similar terminal workflow
+
+The first thing that comes to mind is "is there a chatgpt cli tool?". Well yes there are like
+1. OpenAI CLI :- The official CLI to interact with open AI models. 
+2. ChatGPT CLI :- These are community tools like chatgpt-cli that accomplishes this. 
+ 
+However it is not free and it is not lighting fast as it depends on the underlying network and server availability. One needs to pay as they use. The pricing is usually based on tokens (almost equivalent to a word) sent/received during a query session. 
+
+This costing model is not restricted to OpenAI, most of the AI service providers have similar costing model. Here is a table that shows some of the major vendors
+
+| Provider                                     | Official CLI Tool                           | CLI Purpose / Features                        | Model Access Type          | Pricing Model                      | Notes                                               |
+| -------------------------------------------- | ------------------------------------------- | --------------------------------------------- | -------------------------- | ---------------------------------- | --------------------------------------------------- |
+| **OpenAI**                                   | Yes — OpenAI CLI & ChatGPT CLI wrappers     | Chat, code, completions, embeddings           | Hosted API                 | Pay per 1,000 tokens               | Most widely used; CLI tools free, pay for API usage |
+| **GitHub Copilot**                           | Yes — Copilot CLI (beta) and plugins        | AI coding assistant integrated into editors   | Hosted API (OpenAI-based)  | Subscription ($10/mo or $100/yr)   | Focused on coding, supports Neovim/Vim, VSCode etc. |
+| **Anthropic (Claude)**                       | No official CLI yet (community tools exist) | Chat & completions via API                    | Hosted API                 | Pay per usage (tokens)             | Competes with ChatGPT, offers safe completions      |
+| **Google**                                   | Yes — `gcloud ai` CLI                       | Call Vertex AI models for text & chat         | Hosted API                 | Pay per usage (tokens/characters)  | Enterprise ready, requires setup                    |
+| **Amazon AWS**                               | Yes — AWS CLI (for AI services)             | Invoke Bedrock, Comprehend, and other AI      | Hosted API                 | Pay per API call (varies)          | No dedicated chatbot CLI, scripting via CLI         |
+| **Cohere**                                   | Yes — Cohere CLI                            | Text generation, embeddings, classification   | Hosted API                 | Pay per usage                      | Popular in enterprise & dev circles                 |
+| **AI21 Labs**                                | Yes — AI21 Studio CLI                       | Text generation and language models           | Hosted API                 | Pay per usage                      | Known for Jurassic-2 family models                  |
+| **Meta (LLaMA)**                             | No official CLI; community tools exist      | Open-source LLaMA models (local or cloud-run) | Local or cloud self-hosted | Free software, hardware/cloud cost | No hosted API or official CLI yet                   |
+| **Open Source LLMs** (GPT-J, GPT-NeoX, etc.) | Various community CLI tools                 | Run locally or in cloud                       | Local or cloud self-hosted | Free software, hardware cost       | No official hosted service, requires setup          |
+
+For an experimental setup, I am not ready to pay anything now, thus we are left with options of locally hosted models like LLaMa and build around it. However I would like to keep the option alive of using a paid option if they make sense in future without much changes. So this may put a small dent in the whole electrification process :)
+
+
+
+
+
+
+
+
+
+
+
 
 The first thing that comes to mind is the AI assimilation in shell. Well one can ask what's the use of it -well these can translate requests described in English (or some other language ?)  to shell commands. For example if you need a command but forgot the package it is part of (often my case), you can ask the AI to install the command or write a script to monitor cpu usage.
+
 
 One of the ways to incorporate AI in shell is through [tmuxai](https://github.com/alvinunreal/tmuxai). This is gaining po
 
