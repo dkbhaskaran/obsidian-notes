@@ -150,4 +150,12 @@ Lets start with tmuxai the configuration needed are follows
 curl -fsSL https://get.tmuxai.dev | bash
 ```
 
-tmuxai can work with many options like openai, openrouter or Ollam. Let us configure tmuxai to use Ollama. The config file for tmuxai in my case is found in ~/.config/tmuxai/config.yaml
+tmuxai can work with many compatible APIs like openai, openrouter or on a local machine with Ollam. Let us configure tmuxai to use Ollama. The config file for tmuxai in my case is found in ~/.config/tmuxai/config.yaml. Just add the following lines to config.yaml
+
+```
+openrouter:
+ api_key: dummy
+ model: mistral
+ base_url: http://localhost:11434/v1
+```
+
