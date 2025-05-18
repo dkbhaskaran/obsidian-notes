@@ -121,11 +121,22 @@ if __name__ == "__main__":
 It puts out a response like 
 
 ```
-💬 Chat with Ollama 
-You: hello
-Assistant: Hello! How can I help you today? Let's make this conversation helpful and enjoyable. Is there a specific question or topic you'd like to explore or discuss? I'm here to assist with a variety of subjects, from technology and science to entertainment and lifestyle.
------------------------------------------------------------------
-You: 
+🧑 You: Hello                                                           
+🤖 Assistant: 
+Hello! How can I help you today? Is there a specific question or       
+topic you'd like to discuss? I'm here to provide information, answer    
+questions, or just chat if that's what you prefer. Let me know and we   can get started!                                                        
+
+🧑 You: What can you do for me                                          
+🤖 Assistant:                                                           
+As a text-based AI model, I am designed to help answer questions,      
+provide information, generate text, and assist with a variety of tasks. Here are some examples of what I can do:                         
+
+1. Answering questions on a wide range of topics, from science and      
+history to literature and culture.                                      
+2. Helping you write by generating text, such as emails, letters, or    
+even stories.                                                           
+......
 ```
 
 ## tmux integration
@@ -138,4 +149,5 @@ Lets start with tmuxai the configuration needed are follows
 # install tmux if not already installed
 curl -fsSL https://get.tmuxai.dev | bash
 ```
-2. Create an account with https://openrouter.ai and then create a API token key at https://openrouter.ai/settings/keys for tmuxai. 
+
+tmuxai can work with many options like openai, openrouter or Ollam. Let us configure tmuxai to use Ollama. The config file for tmuxai in my case is found in ~/.config/tmuxai/config.yaml
