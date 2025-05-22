@@ -163,7 +163,7 @@ This is how it looks like
 
 ![[pic-2.png]]
 
-I must confess, it did not help a lot when asked of different tasks, sometimes even gave our wrong commands. I tried to change the underlying model to codellama:instruct, which is supposed be good with code whether it be shell script or the vim code. this model also didnt help with tmuxai
+I must confess, it did not help a lot when asked of different tasks, sometimes even gave out wrong commands. I tried to change the underlying model to codellama:instruct, which is supposed be good with code whether it be shell script or the vim code. this model also not a great help for my requests.
 
 ## Neovim
 
