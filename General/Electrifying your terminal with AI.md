@@ -294,8 +294,7 @@ Below is the configuration snippet for Lazy:
 The key factor to note is we are disabling the default configurations to use our model llama3.2. The result is amazing. Here is one usage example.
 
 
-![[Electrifying-your-terminal-with-AI.webm]]
-
+![[Screencast from 2025-05-22 19-51-49.webm]]
 ## Conclusion
 
 Integrating AI into tools like the Zsh prompt and Neovim can significantly enhance productivity. While OpenAI models currently lead in response quality—be it for chat or code generation—open-source alternatives like LLaMA 3.2 and Mistral offer impressive performance, especially considering they are freely available.
