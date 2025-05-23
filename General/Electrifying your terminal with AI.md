@@ -1,17 +1,23 @@
- I use terminal/terminal adjacent extensively in my daily routine, whether it be do programming or to listen to music or to take notes like what I am doing now. It is a pretty standard setup with zsh+tmux+neovim on Ubuntu 24.04.2 LTS on a Dell G15 5315 with Nvidia GeForce RTX 4050 card. The config files can be found in my github repo [dotfiles](https://github.com/dkbhaskaran/dotfiles). Today we are going to add AI assistance to similar terminal workflow
+I spend most of my day working right in the terminal—whether I’m writing code, listening to music, or jotting down notes (you’re reading one of those notes right now). My setup is pretty classic: Zsh + tmux + Neovim on Ubuntu 24.04.2 LTS, running on a Dell G15 5315 with an NVIDIA GeForce RTX 4050. You can peek at all my configuration files over on my GitHub: [dotfiles](https://github.com/dkbhaskaran/dotfiles).
 
-The first thing that comes to mind is "is there a chatgpt cli tool?". Well yes there are like
-1. OpenAI CLI :- The official CLI to interact with open AI models. 
-2. ChatGPT CLI :- These are community tools like chatgpt-cli that accomplishes this. 
- 
-However it is not free and it is not lighting fast as it depends on the underlying network and server availability. One needs to pay as they use. The pricing is usually based on tokens (almost equivalent to a word) sent/received during a query session. 
+Today, I want to explore how to weave AI assistance directly into that same terminal-centric workflow.
 
-This costing model is not restricted to OpenAI, most of the AI service providers have similar costing model. Here is a table that shows some of the major vendors
+The first question that popped into my mind was: “Is there a ChatGPT CLI?” It turns out there are a couple of options:
+
+1. **OpenAI CLI** – The official command-line interface for interacting with OpenAI models.
+2. **ChatGPT CLI (community tools)** – Projects like `chatgpt-cli` that let you communicate with ChatGPT from your shell.
+
+However, both of these approaches come with a few drawbacks. They aren’t free, and they can feel sluggish at times because every request depends on network speed and server availability. You’re billed based on “tokens,” which are roughly equivalent to words exchanged during a session.
+
+This token-based pricing model isn’t unique to OpenAI—most AI providers work this way. Below is a quick overview of some major vendors and how they charge:
+
+
+```
 
 | Provider                                     | Official CLI Tool                           | CLI Purpose / Features                        | Model Access Type          | Pricing Model                      | Notes                                               |
 | -------------------------------------------- | ------------------------------------------- | --------------------------------------------- | -------------------------- | ---------------------------------- | --------------------------------------------------- |
 | **OpenAI**                                   | Yes — OpenAI CLI & ChatGPT CLI wrappers     | Chat, code, completions, embeddings           | Hosted API                 | Pay per 1,000 tokens               | Most widely used; CLI tools free, pay for API usage |
-| **GitHub Copilot**                           | Yes — Copilot CLI (beta) and plugins        | AI coding assistant integrated into editors   | Hosted API (OpenAI-based)  | Subscription ($10/mo or $100/yr)   | Focused on coding, supports Neovim/Vim, VSCode etc. |
+| **GitHub Copilot**                           | Yes — Copilot CLI (beta) and plugins        | AI coding assistant integrated into editors   | Hosted API (OpenAI-based)  | Subscription (\$10/mo or \$100/yr) | Focused on coding, supports Neovim/Vim, VSCode etc. |
 | **Anthropic (Claude)**                       | No official CLI yet (community tools exist) | Chat & completions via API                    | Hosted API                 | Pay per usage (tokens)             | Competes with ChatGPT, offers safe completions      |
 | **Google**                                   | Yes — `gcloud ai` CLI                       | Call Vertex AI models for text & chat         | Hosted API                 | Pay per usage (tokens/characters)  | Enterprise ready, requires setup                    |
 | **Amazon AWS**                               | Yes — AWS CLI (for AI services)             | Invoke Bedrock, Comprehend, and other AI      | Hosted API                 | Pay per API call (varies)          | No dedicated chatbot CLI, scripting via CLI         |
@@ -20,46 +26,79 @@ This costing model is not restricted to OpenAI, most of the AI service providers
 | **Meta (LLaMA)**                             | No official CLI; community tools exist      | Open-source LLaMA models (local or cloud-run) | Local or cloud self-hosted | Free software, hardware/cloud cost | No hosted API or official CLI yet                   |
 | **Open Source LLMs** (GPT-J, GPT-NeoX, etc.) | Various community CLI tools                 | Run locally or in cloud                       | Local or cloud self-hosted | Free software, hardware cost       | No official hosted service, requires setup          |
 
-For an experimental setup, I am not ready to pay anything now, thus we are left with options of locally hosted models like LLaMa and build around it. However I would like to keep the option alive of using a paid option if they make sense in future without much changes. So this may put a small dent in the whole electrification process :)
-
-There are two prominent options for Open Source local LLM API [Ollama](https://github.com/ollama) and [LocalAI](https://github.com/mudler/LocalAI). In [here](https://hyscaler.com/insights/ollama-vs-localai-open-source-local-llm-apis/#local-ai-the-open-source-open-ai-alternative) there is an detailed comparison of these two and based on the fact Ollama is currently most adopted and that it is easy to setup compared to LocalAI, we are going to use Ollama. Given that it needs GPU support, works in our favour and well its non-support for OpenAI API supprot is not currently a deterrent to our current goal as we are going for free and open source solutions now. If you do not have a GPU support its better to use LocalAI.
-## Ollama setup
-
-I am going to use a docker based setup with the following setup
-
 ```
-docker pull ollama/ollama
+
+In the next section, we’ll explore how to run a completely local AI model—no network required, and no token billing—directly in your terminal.
+
+Since this is an experimental setup and I’m not ready to incur any costs, our focus shifts to locally hosted models like LLaMA. That said, I want to keep the door open for paid options in the future if they become compelling, without having to refactor everything. Admittedly, this might slow down the “electrification” process a bit. 😉
+
+There are two prominent open-source local LLM APIs to consider:
+- [Ollama](https://github.com/ollama)  
+- [LocalAI](https://github.com/mudler/LocalAI)  
+
+For a detailed comparison, see this article:  
+[Ollama vs. LocalAI: Open Source Local LLM APIs](https://hyscaler.com/insights/ollama-vs-localai-open-source-local-llm-apis/#local-ai-the-open-source-open-ai-alternative).
+
+Based on adoption and ease of setup, **we’ll use Ollama**. Ollama requires GPU support—which works in our favor—and its lack of native OpenAI API compatibility isn’t a dealbreaker for our free, open-source goals. If you don’t have a GPU, however, **LocalAI** may be a better choice.  
+
+## Running Ollama in Docker
+
+To get started, we’ll spin up Ollama in a Docker container. This keeps everything isolated and makes it easy to tear down or upgrade the environment later.
+
+1. **Pull the Ollama image:**
+
+```bash
+   docker pull ollama/ollama
+```
+
+2. **Run the container in detached mode:**
+
+```bash
 docker run -d \
   --name ollama \
   -p 11434:11434 \
   -v ollama-data:${HOME}/.ollama \
   --gpus all \
   ollama/ollama
+
+  # --name ollama :  gives the container a human-friendly name.
+  # -p 11434:11434 : exposes Ollama’s default API port (11434) on your host.
+  # -v ollama-data:${HOME}/.ollama : mounts a local data directory so models and    
+  #       state persist across restarts.
+  # --gpus all : passes through your GPU to Ollama (if available).
 ```
 
-Download a model for Ollama, we use mistral, it is GPU friendly and it provides a good balance between speed and accuracy. One can also use CodeLLaMA, WizardCoder for coding heavy use cases or **LLaMA 2 13B** is best for reasoning followed by mistral.
+## Downloading a Model
 
-```
+Once the container is running, pull down a language model. In this example, we’ll use **Mistral**, which strikes a good balance between speed and accuracy on GPU. If you need code-focused capabilities, consider **CodeLLaMA** or **WizardCoder**. For raw reasoning power, **LLaMA 2 13B** is an excellent choice.
+
+```bash
 docker exec -it ollama ollama pull mistral
 ```
 
-Lets check out the if it is working 
+This command downloads the mistral:latest model into your Ollama data directory.
 
-```
+## Testing with a curl Request
+
+After the model finishes downloading, verify that Ollama is up and running by sending a quick API call:
+```bash
 curl http://localhost:11434/api/chat -d '{
   "model": "mistral",
-  "messages": [{"role": "user", "content": "Write a shell script that greets the user"}]
+  "messages": [
+    { "role": "user", "content": "Write a shell script that greets the user" }
+  ]
 }'
 ```
 
 This is how it looks like on my setup
+
 ![[pic-1.png]]
 
 This is the json partial output from the model. Note the HELLO WORLD! message on the right of the text.
 
 ## Shell
 
-The following code in python uses request module to emulate a chat bot for the terminal. A more enhanced version can be found in my [dotfiles](https://github.com/dkbhaskaran/dotfiles)
+Below is a Python script that uses the `requests` module to emulate a simple chatbot in your terminal. It sends your input to the local Ollama API and prints the response. For a more feature-rich version—complete with history management, input prompts, and error handling—check out my [dotfiles](https://github.com/dkbhaskaran/dotfiles).
 
 ```python
 import requests
@@ -139,18 +178,19 @@ even stories.
 ......
 ```
 
-## tmux integration
+## tmux Integration
 
-The first thing that comes to mind is the AI assimilation in shell. Well one can ask what's the use of it -well these can translate requests described in English (or some other language ?)  to shell commands. For example if you need a command but forgot the package it is part of (often my case), you can ask the AI to install the command or write a script to monitor cpu usage. One of the ways to incorporate AI in shell is through [tmuxai](https://github.com/alvinunreal/tmuxai). 
+One of the most natural places to integrate AI is right in your shell. Why would you want this? AI can translate plain-English requests (or prompts in other languages) into shell commands. For instance, if you know you need a particular utility but can’t remember which package provides it, you can simply ask the AI to install that command. Or you might ask for a script that monitors CPU usage. 
 
-Lets start with tmuxai the configuration needed are follows
-1. Install tmuxai through below command. Once 
+A popular project for adding AI features to the shell within tmux is [tmuxai](https://github.com/alvinunreal/tmuxai). Below are the steps to get started:
+
+1. **Install tmuxai**  
 ```
 # install tmux if not already installed
 curl -fsSL https://get.tmuxai.dev | bash
 ```
 
-tmuxai can work with many compatible APIs like openai, openrouter or on a local machine with Ollam. Let us configure tmuxai to use Ollama. The config file for tmuxai in my case is found in ~/.config/tmuxai/config.yaml. Just add the following lines to config.yaml
+tmuxai can work with several AI APIs—such as OpenAI, OpenRouter, or a local Ollama instance. To configure tmuxai to use Ollama, edit your `~/.config/tmuxai/config.yaml` and add the following lines:
 
 ```
 openrouter:
@@ -163,13 +203,17 @@ This is how it looks like
 
 ![[pic-2.png]]
 
-I must confess, it did not help a lot when asked of different tasks, sometimes even gave out wrong commands. I tried to change the underlying model to codellama:instruct, which is supposed be good with code whether it be shell script or the vim code. this model also not a great help for my requests.
+I must admit, the experience wasn’t as smooth as I had hoped. When prompted with various tasks, the responses were often unhelpful—and occasionally, the suggested commands were incorrect. I attempted to switch the underlying model to `codellama:instruct`, which is specifically designed to handle code-related queries, including shell scripts and Vim configurations. Unfortunately, this model also struggled to provide meaningful assistance for my use cases.
 
 ## Neovim
 
-There are several options for integrating with neovim, there are plugins specifically for OpenAI like "jackMort/ChatGPT.nvim" or for copilot like "CopilotC-Nvim/CopilotChat.nvim", but considering our design goal of incorporating ollama, we consider [gp.nvim](https://github.com/Robitx/gp.nvim). This is also quite popular with several features like ChatGPT like sessions, Instructable text/code operation and even speech to text and image generation. The configuration for lazy is as below
+There are multiple ways to integrate AI into Neovim. Some plugins are tailored for specific providers—for example, `"jackMort/ChatGPT.nvim"` for OpenAI, or `"CopilotC-Nvim/CopilotChat.nvim"` for GitHub Copilot. However, in line with our goal of using a local setup via Ollama, we'll be using [gp.nvim](https://github.com/Robitx/gp.nvim).
 
-```
+This plugin is quite versatile and widely adopted. It offers features such as ChatGPT-like conversational sessions, instructable text/code manipulation, and even support for speech-to-text and image generation.
+
+Below is the configuration snippet for Lazy:
+
+```lua
   {
     "robitx/gp.nvim",
     event = "VeryLazy",
@@ -250,8 +294,15 @@ There are several options for integrating with neovim, there are plugins specifi
 The key factor to note is we are disabling the default configurations to use our model llama3.2. The result is amazing. Here is one usage example.
 
 
-
+![[Electrifying-your-terminal-with-AI.webm]]
 
 ## Conclusion
 
-It is indeed useful to use AI as in zsh prompt and neovim, it can boost your productivity multifold. Obviously at present openAI models generate better responses, whether be chat or code but llama3.2 or mistral is not bad considering they are freely available.
+Integrating AI into tools like the Zsh prompt and Neovim can significantly enhance productivity. While OpenAI models currently lead in response quality—be it for chat or code generation—open-source alternatives like LLaMA 3.2 and Mistral offer impressive performance, especially considering they are freely available.
+
+
+
+
+
+
+
