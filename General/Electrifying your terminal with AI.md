@@ -167,4 +167,91 @@ I must confess, it did not help a lot when asked of different tasks, sometimes e
 
 ## Neovim
 
+There are several options for integrating with neovim, there are plugins specifically for OpenAI like "jackMort/ChatGPT.nvim" or for copilot like "CopilotC-Nvim/CopilotChat.nvim", but considering our design goal of incorporating ollama, we consider [gp.nvim](https://github.com/Robitx/gp.nvim). This is also quite popular with several features like ChatGPT like sessions, Instructable text/code operation and even speech to text and image generation. The configuration for lazy is as below
 
+```
+  {
+    "robitx/gp.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("gp").setup {
+        -- 1) Disable OpenAI (since you want to use Ollama locally)
+        providers = {
+          openai = { disable = true },
+
+          -- 2) Enable Ollama provider pointing at localhost:11434
+          ollama = {
+            disable = false,
+            endpoint = "http://localhost:11434/v1/chat/completions",
+          },
+        },
+
+        -- 3) Modify ChatOllamaLlama3.1-8B from default config to use llama3.2. 
+        agents = {
+          {
+            name = "ChatOllamaLlama3.1-8B",
+            disable = true,
+          },
+          {
+            provider = "ollama",
+            name = "ChatOllamaLlama3.1-8B",
+            chat = true,
+            command = false,
+            -- string with model name or table with model name and parameters
+            model = {
+              model = "llama3.2",
+              temperature = 0.6,
+              top_p = 1,
+              min_p = 0.05,
+            },
+            -- system prompt (use this to specify the persona/role of the AI)
+            system_prompt = "You are a general AI assistant.",
+          },
+          {
+            provider = "ollama",
+            name = "CodeOllamaLlama3.1-8B",
+            chat = false,
+            command = true,
+            -- string with model name or table with model name and parameters
+            model = {
+              model = "llama3.2",
+              temperature = 0.4,
+              top_p = 1,
+              min_p = 0.05,
+            },
+            -- system prompt (use this to specify the persona/role of the AI)
+            system_prompt = require("gp.defaults").code_system_prompt,
+          },
+        },
+      }
+
+      local function keymapOptions(desc)
+        return {
+          noremap = true,
+          silent = true,
+          nowait = true,
+          desc = "GPT prompt " .. desc,
+        }
+      end
+      -- Optional: keymaps to invoke chat or code assistance
+      vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions "Visual Chat Paste")
+      vim.keymap.set("v", "<C-g><C-v>", ":<C-u>'<,'>GpChatNew vsplit<cr>", keymapOptions "Visual Chat New vsplit")
+      vim.keymap.set({ "n", "i" }, "<C-g><C-v>", "<cmd>GpChatNew vsplit<cr>", keymapOptions "New Chat vsplit")
+
+      -- Prompt commands
+      vim.keymap.set({ "n", "i" }, "<C-g>r", "<cmd>GpRewrite<cr>", keymapOptions "Inline Rewrite")
+      vim.keymap.set("v", "<C-g>r", ":<C-u>'<,'>GpRewrite<cr>", keymapOptions "Visual Rewrite")
+    end,
+  },
+
+```
+
+The key factor to note is we are disabling the default configurations to use our model llama3.2. The result is amazing. Here is one usage example.
+
+
+
+
+## Conclusion
+
+It is indeed useful to use AI as in zsh prompt and neovim, it can boost your productivity multifold. Obviously at present openAI models generate better responses, whether be chat or code but llama3.2 or mistral is not bad considering they are freely available.
